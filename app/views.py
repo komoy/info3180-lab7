@@ -6,16 +6,21 @@ This file creates your application.
 """
 
 from app import app
+<<<<<<< HEAD
 from flask import render_template, request, jsonify
 from forms import UploadForm
 from werkzeug.utils import secure_filename
 
 import os
+=======
+from flask import render_template, request
+>>>>>>> 9248b317bcd1da8faf9bbb7c4b676df661c84fca
 
 ###
 # Routing for your application.
 ###
 
+<<<<<<< HEAD
 @app.route("/api/upload", methods=["POST"])
 def uploads():
     
@@ -36,6 +41,8 @@ def uploads():
 
     return jsonify(errors=form_errors(form))
 
+=======
+>>>>>>> 9248b317bcd1da8faf9bbb7c4b676df661c84fca
 
 @app.route('/')
 def index():
