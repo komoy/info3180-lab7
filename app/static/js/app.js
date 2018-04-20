@@ -39,6 +39,67 @@ const Home = Vue.component('home', {
        return {}
     }
 });
+const Upload=Vue.component('upload-form',{
+    template: `
+     <div>
+        <div v-if='messageFlag' >
+        
+            <div v-if="!errorFlag ">
+                <div class="alert alert-success" >
+                    {{ message }}
+                </div>
+            </div>
+            <div v-else >
+                <ul class="alert alert-danger">
+                    <li v-for="error in message">
+                        {{ error }}
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+    
+    <h1>Upload Photo</h1>
+        <form id="uploadForm" @submit.prevent="UploadForm" enctype="multipart/form-data">
+            <label>Description:</label><br/>
+            <textarea name='description'></textarea><br/>
+            <label for='photo' class='btn btn-primary'>Browse....</label> <span>{{ filename }}</span>
+            <input id="photo" type="file" name='photo' style="display: none" v-on:change = "onFileSelected" /><br/>
+            <input type="submit" value="Upload" class="btn btn-success"/>
+        </form>
+        </div>`,
+        
+        methods:{
+            UploadForm:function(){
+            let uploadForm = document.getElementById('uploadForm');
+            
+            let form_data = new FormData(uploadForm); 
+    
+            
+        fetch("/api/upload", {
+             method: 'POST',
+             body: form_data,
+             headers: {
+                'X-CSRFToken': token
+             },
+             credentials: 'same-origin' 
+        })
+        .then(function (response) {
+            return response.json();
+         })
+         .then(function (jsonResponse) {
+        // display a success message
+          console.log(jsonResponse);
+        })
+        .catch(function (error) {
+        console.log(error);
+         });
+    
+}
+}
+});
+
+
 
 // Define Routes
 const router = new VueRouter({

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField,TextAreaField
@@ -10,10 +10,3 @@ class UploadForm(FlaskForm):
     upload = FileField('Photo', validators=[FileRequired(),FileAllowed(ALLOWED_EXTENSIONS, 'Images only!')])
     description=TextAreaField(u'Image Description') 
     
-
-
-
-    
-=======
-
->>>>>>> 9248b317bcd1da8faf9bbb7c4b676df661c84fca
